@@ -1,5 +1,7 @@
 # Grok MCP Server
 
+[![smithery badge](https://smithery.ai/badge/@BrewMyTech/grok-mcp)](https://smithery.ai/server/@BrewMyTech/grok-mcp)
+
 MCP Server for the Grok API, enabling chat, completions, embeddings and model operations with Grok AI.
 
 ### Features
@@ -85,6 +87,16 @@ To use this server, you'll need a Grok API key:
 ```
 
 ## Build
+
+### Installing via Smithery
+
+To install grok-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@BrewMyTech/grok-mcp):
+
+```bash
+npx -y @smithery/cli install @BrewMyTech/grok-mcp --client claude
+```
+
+### Build from Source
 
 Build the project from source:
 

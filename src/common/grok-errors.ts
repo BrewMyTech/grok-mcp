@@ -78,9 +78,13 @@ export function createGrokError(status: number, data: any): GrokError {
     case 404:
       return new GrokResourceNotFoundError(message);
     case 429:
-      const resetAt = new Date();
-      // Add 1 hour as a default if reset time is not provided
-      resetAt.setHours(resetAt.getHours() + 1);
+      let resetAt: Date;
+      if (data && data.reset_at) {
+        const parsed = new Date(data.reset_at);
+        resetAt = isNaN(parsed.getTime()) ? new Date(Date.now() + 60 * 60 * 1000) : parsed;
+      } else {
+        resetAt = new Date(Date.now() + 60 * 60 * 1000);
+      }
       return new GrokRateLimitError(message, resetAt);
     case 500:
     case 502:

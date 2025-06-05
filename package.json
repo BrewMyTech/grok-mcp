@@ -16,8 +16,8 @@
     "build": "tsc --noEmit",
     "prepare": "npm run build",
     "watch": "tsc --watch",
-    "start": "node --loader ts-node index.ts",
-    "dev": "node --loader ts-node index.ts"
+    "start": "ts-node index",
+    "dev": "ts-node index"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.0.1",

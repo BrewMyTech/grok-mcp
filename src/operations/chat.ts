@@ -200,6 +200,25 @@ export const ChatCompletionRequestSchema = z.object({
     .max(2)
     .optional()
     .describe("Penalty for new tokens based on frequency in text (-2 to 2)"),
+  logit_bias: z
+    .record(z.string(), z.number())
+    .optional()
+    .describe(
+      "Map of token IDs to bias scores (-100 to 100) that influence generation"
+    ),
+  response_format: z
+    .object({ type: z.enum(["text", "json_object"]) })
+    .optional()
+    .describe(
+      "Specify 'json_object' to receive JSON response or 'text' for raw text"
+    ),
+  seed: z
+    .number()
+    .int()
+    .optional()
+    .describe(
+      "If specified, results will be more deterministic when the same seed is used"
+    ),
   stop: z
     .union([z.string(), z.array(z.string())])
     .optional()

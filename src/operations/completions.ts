@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { grokRequest } from "../common/grok-api.ts";
+import { grokRequest } from "../common/grok-api";
 
 // Schema definitions
 const CompletionsChoiceSchema = z.object({

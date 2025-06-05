@@ -3,10 +3,10 @@ import { FastMCP } from "fastmcp";
 import { z } from "zod";
 import fetch from "node-fetch";
 
-import * as models from "./src/operations/models.ts";
-import * as chat from "./src/operations/chat.ts";
-import * as completions from "./src/operations/completions.ts";
-import * as embeddings from "./src/operations/embeddings.ts";
+import * as models from "./src/operations/models";
+import * as chat from "./src/operations/chat";
+import * as completions from "./src/operations/completions";
+import * as embeddings from "./src/operations/embeddings";
 import {
   GrokError,
   GrokValidationError,
@@ -17,8 +17,8 @@ import {
   GrokBadRequestError,
   GrokServerError,
   isGrokError,
-} from "./src/common/grok-errors.ts";
-import { VERSION } from "./src/common/version.ts";
+} from "./src/common/grok-errors";
+import { VERSION } from "./src/common/version";
 
 if (!globalThis.fetch) {
   globalThis.fetch = fetch as unknown as typeof global.fetch;
@@ -39,7 +39,9 @@ function formatGrokError(error: GrokError): string {
   } else if (error instanceof GrokPermissionError) {
     message = `Permission Denied: ${error.message}`;
   } else if (error instanceof GrokRateLimitError) {
-    message = `Rate Limit Exceeded: ${error.message}\nResets at: ${error.resetAt.toISOString()}`;
+    message = `Rate Limit Exceeded: ${
+      error.message
+    }\nResets at: ${error.resetAt.toISOString()}`;
   } else if (error instanceof GrokBadRequestError) {
     message = `Bad Request: ${error.message}`;
   } else if (error instanceof GrokServerError) {
@@ -98,7 +100,9 @@ server.addTool({
   parameters: chat.ChatCompletionRequestSchema,
   execute: async (args) => {
     try {
-      console.error(`[DEBUG] Creating chat completion with model: ${args.model}`);
+      console.error(
+        `[DEBUG] Creating chat completion with model: ${args.model}`
+      );
       const completion = await chat.createChatCompletion(args);
       console.error(`[DEBUG] Chat completion created successfully`);
       return JSON.stringify(completion, null, 2);

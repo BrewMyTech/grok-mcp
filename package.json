@@ -6,7 +6,6 @@
   "author": "BrewMyTech (https://www.brewmytech.com)",
   "homepage": "https://www.brewmytech.com",
   "bugs": "https://github.com/brewmytech/grok-mcp/issues",
-  "type": "module",
   "bin": {
     "mcp-server-grok": "dist/index.js"
   },

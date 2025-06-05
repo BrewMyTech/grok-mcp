@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { grokRequest } from "../common/grok-api.ts";
+import { grokRequest } from "../common/grok-api";
 
 // Basic message schema
 const MessageContentTextSchema = z.object({

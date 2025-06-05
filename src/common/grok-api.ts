@@ -1,6 +1,6 @@
 import { getUserAgent } from "universal-user-agent";
-import { createGrokError } from "./grok-errors.js";
-import { VERSION } from "./version.js";
+import { createGrokError } from "./grok-errors";
+import { VERSION } from "./version";
 
 // Retrieve API key from environment variable
 const GROK_API_KEY = process.env.GROK_API_KEY;

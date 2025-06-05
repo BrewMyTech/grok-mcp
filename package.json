@@ -6,7 +6,6 @@
   "author": "BrewMyTech (https://www.brewmytech.com)",
   "homepage": "https://www.brewmytech.com",
   "bugs": "https://github.com/brewmytech/grok-mcp/issues",
-  "type": "module",
   "bin": {
     "mcp-server-grok": "dist/index.js"
   },
@@ -14,14 +13,17 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc && shx chmod +x dist/*.js",
+    "build": "tsc --noEmit",
     "prepare": "npm run build",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "start": "node --loader ts-node/esm index.ts",
+    "dev": "node --loader ts-node/esm index.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.0.1",
     "@types/node": "^22",
     "@types/node-fetch": "^2.6.12",
+    "fastmcp": "^2.2.1",
     "node-fetch": "^3.3.2",
     "universal-user-agent": "^7.0.2",
     "zod": "^3.22.4",
@@ -29,6 +31,7 @@
   },
   "devDependencies": {
     "shx": "^0.3.4",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "ts-node": "^10.9.2"
   }
 }

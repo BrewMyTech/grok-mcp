@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { grokRequest } from "../common/grok-api.js";
+import { grokRequest } from "../common/grok-api";
 
 // Schema definitions
 const CompletionsChoiceSchema = z.object({
@@ -92,6 +92,19 @@ export const CompletionsRequestSchema = z.object({
     .max(2)
     .optional()
     .describe("Penalty for new tokens based on frequency in text (-2 to 2)"),
+  logit_bias: z
+    .record(z.string(), z.number())
+    .optional()
+    .describe(
+      "Map of token IDs to bias scores (-100 to 100) that influence generation"
+    ),
+  seed: z
+    .number()
+    .int()
+    .optional()
+    .describe(
+      "If specified, results will be more deterministic when the same seed is used"
+    ),
   best_of: z
     .number()
     .int()

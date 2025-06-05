@@ -1,6 +1,6 @@
 # Grok MCP Server
 
-MCP Server for the Grok API, enabling chat, completions, embeddings and model operations with Grok AI.
+MCP Server for the Grok API, enabling chat, completions, embeddings and model operations with Grok AI. It is implemented using [FastMCP](https://github.com/punkpeye/fastmcp) for quick setup and tool registration. By default the server exposes an HTTP streaming endpoint on port `8080`.
 
 ### Features
 
@@ -32,10 +32,13 @@ MCP Server for the Grok API, enabling chat, completions, embeddings and model op
      - `messages` (array): Chat messages, each with `role`, `content`
      - `temperature` (optional number): Sampling temperature
      - `top_p` (optional number): Nucleus sampling parameter
-     - `n` (optional number): Number of completions to generate
-     - `max_tokens` (optional number): Maximum tokens to generate
-     - `stream` (optional boolean): Whether to stream responses
-   - Returns: Generated chat completion response
+    - `n` (optional number): Number of completions to generate
+    - `max_tokens` (optional number): Maximum tokens to generate
+    - `stream` (optional boolean): Whether to stream responses
+    - `logit_bias` (optional object): Map of token IDs to bias scores
+    - `response_format` (optional object): `{ type: "json_object" | "text" }`
+    - `seed` (optional number): Seed for deterministic sampling
+  - Returns: Generated chat completion response
 
 4. `create_completion`
 
@@ -43,10 +46,12 @@ MCP Server for the Grok API, enabling chat, completions, embeddings and model op
    - Inputs:
      - `model` (string): ID of the model to use
      - `prompt` (string): Text prompt to complete
-     - `temperature` (optional number): Sampling temperature
-     - `max_tokens` (optional number): Maximum tokens to generate
-     - `stream` (optional boolean): Whether to stream responses
-   - Returns: Generated text completion response
+    - `temperature` (optional number): Sampling temperature
+    - `max_tokens` (optional number): Maximum tokens to generate
+    - `stream` (optional boolean): Whether to stream responses
+    - `logit_bias` (optional object): Map of token IDs to bias scores
+    - `seed` (optional number): Seed for deterministic sampling
+  - Returns: Generated text completion response
 
 5. `create_embeddings`
    - Create embeddings from input text
@@ -65,6 +70,8 @@ To use this server, you'll need a Grok API key:
 1. Obtain a Grok API key from [x.ai](https://x.ai)
 2. Keep your API key secure and do not share it publicly
 
+The server also respects `GROK_API_BASE_URL` if you need to point to a non-default API host.
+
 ```json
 {
   "chat.mcp.enabled": true,
@@ -74,8 +81,8 @@ To use this server, you'll need a Grok API key:
       "args": ["mcp-remote", "https://mcp.kite.trade/sse"]
     },
     "grok": {
-      "command": "node-for-claude",
-      "args": ["/Users/rishavanand/Projects/brewmytech/grok-mcp/dist/index.js"],
+      "command": "npx-for-claude",
+      "args": ["mcp-remote", "http://localhost:8080/stream"],
       "env": {
         "GROK_API_KEY": "XXXXXXXX"
       }
@@ -86,19 +93,22 @@ To use this server, you'll need a Grok API key:
 
 ## Build
 
-Build the project from source:
+Build the project from source (optional for generating JavaScript output):
 
 ```bash
 npm install
-npm run build
+npm run build  # optional
+npm start
 ```
+`npm start` runs the server with `ts-node`.
+The HTTP server listens on `http://localhost:8080/stream`.
 
 ## Development
 
 For development with automatic rebuilding on file changes:
 
 ```bash
-npm run watch
+npm run dev
 ```
 
 ## License

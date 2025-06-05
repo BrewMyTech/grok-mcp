@@ -146,8 +146,15 @@ server.addTool({
 });
 
 async function startServer() {
-  await server.start({ transportType: "stdio" });
-  console.error("Grok MCP Server running on stdio");
+  await server.start({
+    transportType: "httpStream",
+    httpStream: {
+      port: 8080,
+    },
+  });
+  console.error(
+    "Grok MCP Server running on HTTP stream at http://localhost:8080/stream"
+  );
 }
 
 startServer().catch((error) => {

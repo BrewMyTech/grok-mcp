@@ -1,6 +1,6 @@
 # Grok MCP Server
 
-MCP Server for the Grok API, enabling chat, completions, embeddings and model operations with Grok AI. It is implemented using [FastMCP](https://github.com/punkpeye/fastmcp) for quick setup and tool registration.
+MCP Server for the Grok API, enabling chat, completions, embeddings and model operations with Grok AI. It is implemented using [FastMCP](https://github.com/punkpeye/fastmcp) for quick setup and tool registration. By default the server exposes an HTTP streaming endpoint on port `8080`.
 
 ### Features
 
@@ -81,8 +81,8 @@ The server also respects `GROK_API_BASE_URL` if you need to point to a non-defau
       "args": ["mcp-remote", "https://mcp.kite.trade/sse"]
     },
     "grok": {
-      "command": "node-for-claude",
-      "args": ["/Users/rishavanand/Projects/brewmytech/grok-mcp/dist/index.js"],
+      "command": "npx-for-claude",
+      "args": ["mcp-remote", "http://localhost:8080/stream"],
       "env": {
         "GROK_API_KEY": "XXXXXXXX"
       }
@@ -100,6 +100,7 @@ npm install
 npm run build
 npm start
 ```
+The HTTP server listens on `http://localhost:8080/stream`.
 
 ## Development
 

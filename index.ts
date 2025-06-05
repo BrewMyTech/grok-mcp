@@ -3,10 +3,10 @@ import { FastMCP } from "fastmcp";
 import { z } from "zod";
 import fetch from "node-fetch";
 
-import * as models from "./src/operations/models.js";
-import * as chat from "./src/operations/chat.js";
-import * as completions from "./src/operations/completions.js";
-import * as embeddings from "./src/operations/embeddings.js";
+import * as models from "./src/operations/models.ts";
+import * as chat from "./src/operations/chat.ts";
+import * as completions from "./src/operations/completions.ts";
+import * as embeddings from "./src/operations/embeddings.ts";
 import {
   GrokError,
   GrokValidationError,
@@ -17,8 +17,8 @@ import {
   GrokBadRequestError,
   GrokServerError,
   isGrokError,
-} from "./src/common/grok-errors.js";
-import { VERSION } from "./src/common/version.js";
+} from "./src/common/grok-errors.ts";
+import { VERSION } from "./src/common/version.ts";
 
 if (!globalThis.fetch) {
   globalThis.fetch = fetch as unknown as typeof global.fetch;

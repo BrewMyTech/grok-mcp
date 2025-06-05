@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { grokRequest } from "../common/grok-api.js";
+import { grokRequest } from "../common/grok-api.ts";
 
 // Schema definitions
 export const ModelSchema = z.object({

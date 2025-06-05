@@ -93,13 +93,14 @@ The server also respects `GROK_API_BASE_URL` if you need to point to a non-defau
 
 ## Build
 
-Build the project from source:
+Build the project from source (optional for generating JavaScript output):
 
 ```bash
 npm install
-npm run build
+npm run build  # optional
 npm start
 ```
+`npm start` runs the server with `ts-node`.
 The HTTP server listens on `http://localhost:8080/stream`.
 
 ## Development
